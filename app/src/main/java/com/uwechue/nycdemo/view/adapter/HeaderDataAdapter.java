@@ -3,9 +3,11 @@ package com.uwechue.nycdemo.view.adapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.uwechue.nycdemo.R;
 import com.uwechue.nycdemo.databinding.ItemRowsBinding;
@@ -23,6 +25,8 @@ import java.util.List;
 public class HeaderDataAdapter extends RecyclerView.Adapter<HeaderDataAdapter.RowItemAdapterViewHolder> {
 
     private List<SchoolsRowItem> rowItems;
+
+    private View lastClickedView;
 
     public HeaderDataAdapter() {
         this.rowItems = Collections.emptyList();
@@ -44,6 +48,19 @@ public class HeaderDataAdapter extends RecyclerView.Adapter<HeaderDataAdapter.Ro
         } else {
             holder.itemRowsBinding.labelDescription.setVisibility(View.VISIBLE);
         }
+
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(view.getContext(), "Item Clicked - ", Toast.LENGTH_SHORT).show();
+                if (lastClickedView != null) {
+                    lastClickedView.setBackgroundColor(Color.parseColor("#EEEEEE"));
+                }
+                view.setBackgroundColor(Color.parseColor("#333333"));
+                lastClickedView = view;
+            }
+        });
     }
 
     @Override

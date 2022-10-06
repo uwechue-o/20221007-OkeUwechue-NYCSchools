@@ -10,7 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.uwechue.nycdemo.R;
 import com.uwechue.nycdemo.databinding.FragmentMainBinding;
 import com.uwechue.nycdemo.view.adapter.HeaderDataAdapter;
 import com.uwechue.nycdemo.viewmodel.MainViewModel;
@@ -40,7 +39,7 @@ public class MainFragment extends Fragment implements Observer {
     public void onViewCreated(@NonNull View view,
                               @Nullable Bundle savedInstanceState) {
 
-        binding.toolbar.setTitle(R.string.app_name);
+        //binding.toolbar.setTitle(R.string.app_name);
     }
 
     @Override

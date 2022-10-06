@@ -26,7 +26,7 @@ public class SchoolsRowItem {
 
     @SerializedName("phone_number")
     @Expose
-    private String phoneNUmber;
+    private String phoneNumber;
 
     @SerializedName("school_email")
     @Expose
@@ -97,9 +97,9 @@ public class SchoolsRowItem {
     // GETTERS
     public String getSchoolName() { return schoolName; }
     public String getOverviewParagraph() { return overviewParagraph; }
-
-    // SETTERS
-    public void setSchoolName(String title) { this.schoolName = schoolName; }
-    public void setDescription(String description) { this.overviewParagraph = overviewParagraph; }
+    public String getAttendanceRate() { return attendanceRate; }
+    public String getBorough() { return borough; }
+    public String getPhoneNumber() { return phoneNumber; }
+    public String getWebsite() { return website; }
 
 }

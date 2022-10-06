@@ -26,6 +26,21 @@ public class ItemRowViewModel extends BaseObservable {
         return rowItem.getSchoolName();
     }
 
+    public String getAttendanceRate() {
+        return rowItem.getAttendanceRate();
+    }
+
+    public String getBorough() {
+        return rowItem.getBorough();
+    }
+
+    public String getPhoneNumber() {
+        return rowItem.getPhoneNumber();
+    }
+
+    public String getWebsite() {
+        return rowItem.getWebsite();
+    }
 
     public void setRowItem(SchoolsRowItem rowItem) {
         this.rowItem = rowItem;
