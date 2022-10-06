@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav"
+    app:startDestination="@+id/schools_fragment"
+    >
+
+    <fragment
+        android:id="@+id/schools_fragment"
+        android:name="com.uwechue.nycdemo.view.MainFragment"
+        android:label="fragment_schools_data"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_schools_fragment_to_scores_fragment"
+            app:destination="@id/scores_fragment"
+            />
+    </fragment>
+
+    <fragment android:id="@+id/scores_fragment"
+        android:name="com.uwechue.nycdemo.view.ScoresFragment"
+        android:label="fragment_SAT_scores"
+        tools:layout="@layout/fragment_scores">
+        <action
+            android:id="@+id/action_scores_fragment_to_schools_fragment"
+            app:destination="@id/schools_fragment"
+            />
+    </fragment>
+
+
+
+
+
+
+
+
+
+</navigation>
