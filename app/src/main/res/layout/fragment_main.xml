@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.uwechue.nycdemo.view.MainFragment">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="mainViewModel"
+            type="com.uwechue.nycdemo.viewmodel.MainViewModel" />
+    </data>
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/darker_gray"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+                <ProgressBar
+                    android:id="@+id/progress_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:visibility="@{mainViewModel.progressBar}" />
+
+                <TextView
+                    android:id="@+id/label_status"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@{mainViewModel.messageLabel}"
+                    app:visibility="@{mainViewModel.rowLabel}" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/data_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/background_light"
+                    android:clipToPadding="false"
+                    android:scrollbars="vertical"
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    app:visibility="@{mainViewModel.rowRecycler}"
+                    tools:listitem="@layout/item_rows" />
+
+
+            </LinearLayout>
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>
