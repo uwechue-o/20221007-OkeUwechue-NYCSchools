@@ -63,6 +63,7 @@ public class MainFragment extends Fragment implements Observer {
     @Override
     public void onDestroy() {
         super.onDestroy();
+
         mainViewModel.reset();
     }
 

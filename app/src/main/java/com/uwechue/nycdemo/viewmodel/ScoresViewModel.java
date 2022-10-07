@@ -61,21 +61,28 @@ public class ScoresViewModel extends Observable {
         writing = new ObservableField<>("");
     }
 
-    public void loadData(View view) {
+    public Boolean loadData(View view) {
         initializeViews();
+
+        // check for valid internet connection
         if (!Utils.isNetworkAvailable(context)) {
             Snackbar.make(view, R.string.network_error, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
             messageLabel.set(context.getString(R.string.network_error));
             progressBar.set(View.GONE);
             statusLabel.set(View.VISIBLE);
-            return;
+            return false;
         }
 
         if(rowItemList == null || rowItemList.isEmpty())
             fetchScoresData();
-        else
+        else {
             progressBar.set(View.GONE);
+            setChanged();
+            notifyObservers();
+        }
+
+        return true;
     }
 
     public void initializeViews() {
@@ -137,19 +144,11 @@ public class ScoresViewModel extends Observable {
                              String mathScore,
                              String readingScore,
                              String writingScore) {
-        Log.i(TAG, "Schoolname null ? "+ (schoolName==null));
         schoolName.set(school);
-        Log.i(TAG, "NumTesters null ? "+ (testers==null));
         testers.set(numberOfTesters);
-        Log.i(TAG, "Math null ? "+ (mathematics==null));
         mathematics.set(mathScore);
-        Log.i(TAG, "Reading null ? "+ (reading==null));
         reading.set(readingScore);
-        Log.i(TAG, "Writing null ? "+ (writing==null));
         writing.set(writingScore);
-
-        messageLabel.set("Ok. Data collected --");
-        statusLabel.set(View.VISIBLE);
     }
 
     public void reset() {

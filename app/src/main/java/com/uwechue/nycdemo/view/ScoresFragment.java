@@ -1,5 +1,6 @@
 package com.uwechue.nycdemo.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,10 +10,11 @@ import android.view.ViewGroup;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
+import androidx.navigation.Navigation;
 
 import com.uwechue.nycdemo.R;
 import com.uwechue.nycdemo.databinding.FragmentScoresBinding;
@@ -29,19 +31,20 @@ public class ScoresFragment extends Fragment implements Observer {
     private static final String TAG = "ScoresFragment";
     private FragmentScoresBinding binding;
     private ScoresViewModel scoresViewModel;
-
     private SharedViewModel sharedViewModel;
+    private NavController navController;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        navController = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
 
         // This callback will only be called when ScoresFragment is at least Started.
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
             public void handleOnBackPressed() {
                 // navigate to the destination fragment
-                NavController navController = NavHostFragment.findNavController(ScoresFragment.this);
                 navController.navigate(R.id.action_scores_fragment_to_schools_fragment);
             }
         };
@@ -68,9 +71,25 @@ public class ScoresFragment extends Fragment implements Observer {
         scoresViewModel.addObserver(this);
 
         //fetch and display the schools data
-        scoresViewModel.loadData(binding.getRoot());
+        Boolean success = scoresViewModel.loadData(binding.getRoot());
+
+        if(!success)
+            showExitPopup();
     }
 
+    @Override
+    public void onPause() {
+        scoresViewModel.deleteObserver(this);
+
+        super.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        scoresViewModel.reset();
+
+        super.onDestroy();
+    }
 
     /**
      * This method is called whenever the observed object is changed. An
@@ -112,8 +131,21 @@ public class ScoresFragment extends Fragment implements Observer {
             } else {
                 Log.i(TAG, "Matching Entry NOT FOUND");
                 scoresViewModel.showErr();
+                showExitPopup();
             }
-
         }
+    }
+
+    private void showExitPopup() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage(getContext().getString(R.string.missing_data))
+                .setCancelable(false)
+                .setPositiveButton("Return to Main page", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        navController.navigate(R.id.action_scores_fragment_to_schools_fragment);
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }

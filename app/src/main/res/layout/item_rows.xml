@@ -86,29 +86,30 @@
                     android:textSize="15sp"
                     tools:ignore="RtlCompat" />
                 <TextView
-                    android:id="@+id/label_website"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/dimen_16dp"
-                    android:layout_marginStart="@dimen/dimen_16dp"
-                    android:layout_marginTop="@dimen/dimen_4dp"
-                    android:layout_weight="0.8"
-                    android:text="@{mainViewModel.website}"
-                    android:textColor="@color/blue_grey_200"
-                    android:textSize="15sp"
-                    tools:ignore="RtlCompat" />
-                <TextView
                     android:id="@+id/label_phonenumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/dimen_16dp"
                     android:layout_marginStart="@dimen/dimen_16dp"
                     android:layout_marginTop="@dimen/dimen_4dp"
-                    android:layout_marginBottom="@dimen/dimen_8dp"
                     android:layout_weight="0.8"
                     android:text="@{mainViewModel.phoneNumber}"
                     android:textColor="@color/blue_grey_200"
                     android:textSize="15sp"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/label_website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_10dp"
+                    android:layout_marginBottom="@dimen/dimen_8dp"
+                    android:layout_weight="0.8"
+                    android:text="@{mainViewModel.website}"
+                    android:autoLink="web"
+                    android:textColor="@color/amber_800"
+                    android:textSize="20sp"
                     tools:ignore="RtlCompat" />
 
             </LinearLayout>
