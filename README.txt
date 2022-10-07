@@ -21,3 +21,4 @@ FURTHER WORK / ToDo
 - add data paging functionality so that schools data is fetched as individual batches on demand,
   to minimize latency perceived by user for startup page
 - add on-screen Back button widget for Scores fragment
+- refactor entire java legacy app as Kotlin and replace XML views with Composables
