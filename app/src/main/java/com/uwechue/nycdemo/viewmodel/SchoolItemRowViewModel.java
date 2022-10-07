@@ -8,12 +8,12 @@ import com.uwechue.nycdemo.model.SchoolsRowItem;
  * This class is responsible to update the individual Rows of the recycler View
  * We get the data from the RecyclerView Adapter class
  */
-public class ItemRowViewModel extends BaseObservable {
+public class SchoolItemRowViewModel extends BaseObservable {
 
     private SchoolsRowItem rowItem;
     private Context context;
 
-    public ItemRowViewModel(SchoolsRowItem rowItem, Context context) {
+    public SchoolItemRowViewModel(SchoolsRowItem rowItem, Context context) {
         this.rowItem = rowItem;
         this.context = context;
     }

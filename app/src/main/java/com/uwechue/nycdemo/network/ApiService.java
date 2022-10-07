@@ -3,8 +3,8 @@ package com.uwechue.nycdemo.network;
 import static com.uwechue.nycdemo.utility.Utils.LEVEL_1_ENDPOINT;
 import static com.uwechue.nycdemo.utility.Utils.LEVEL_2_ENDPOINT;
 
-import com.uwechue.nycdemo.model.SchoolsListData;
 import com.uwechue.nycdemo.model.SchoolsRowItem;
+import com.uwechue.nycdemo.model.ScoresRowItem;
 
 import java.util.List;
 
@@ -22,6 +22,6 @@ public interface ApiService {
 
     // Fetch the schools data
     @GET(LEVEL_2_ENDPOINT)
-    Observable<List<SchoolsRowItem>> fetchSATScores();
+    Observable<List<ScoresRowItem>> fetchSATScores();
 
 }

@@ -48,17 +48,15 @@ public class MainViewModel extends Observable {
         progressBar = new ObservableInt(View.GONE);
         rowRecycler = new ObservableInt(View.GONE);
         rowLabel = new ObservableInt(View.VISIBLE);
-        messageLabel = new ObservableField<>(context.getString(R.string.load_data));
+        messageLabel = new ObservableField<>("");
     }
 
-    public void onClickFabToLoad(View view) {
+    public void loadData(View view) {
         initializeViews();
         if (!Utils.isNetworkAvailable(context)) {
             Snackbar.make(view, R.string.network_error, Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show();
-            messageLabel.set(context.getString(R.string.network_error)
-                    + "\n"
-                    + context.getString(R.string.load_data));
+            messageLabel.set(context.getString(R.string.network_error));
             progressBar.set(View.GONE);
             rowLabel.set(View.VISIBLE);
             rowRecycler.set(View.GONE);
@@ -81,16 +79,16 @@ public class MainViewModel extends Observable {
 
         Disposable disposable = ApiCallHelper.call(responseObservable, new ApiCallback<List<SchoolsRowItem>>() {
             @Override
-            public void onSuccess(List<SchoolsRowItem> headerListData) {
-                Log.d(TAG, "List of data = " + headerListData);
-                if (headerListData == null) {
+            public void onSuccess(List<SchoolsRowItem> schoolsListData) {
+                Log.d(TAG, "List of data = " + schoolsListData);
+                if (schoolsListData == null) {
                     messageLabel.set(context.getString(R.string.callback_error));
                     progressBar.set(View.GONE);
                     rowLabel.set(View.VISIBLE);
                     rowRecycler.set(View.GONE);
                     return;
                 }
-                updateRowDataList(headerListData);
+                updateRowDataList(schoolsListData);
                 progressBar.set(View.GONE);
                 rowLabel.set(View.GONE);
                 rowRecycler.set(View.VISIBLE);
@@ -109,8 +107,8 @@ public class MainViewModel extends Observable {
         compositeDisposable.add(disposable);
     }
 
-    private void updateRowDataList(List<SchoolsRowItem> peoples) {
-        rowItemList.addAll(peoples);
+    private void updateRowDataList(List<SchoolsRowItem> schools) {
+        rowItemList.addAll(schools);
 
         setChanged();
         notifyObservers();

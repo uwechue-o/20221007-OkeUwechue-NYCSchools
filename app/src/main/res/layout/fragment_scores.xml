@@ -3,14 +3,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.uwechue.nycdemo.view.MainActivity">
+    tools:context="com.uwechue.nycdemo.view.ScoresFragment">
 
     <data>
         <import type="android.view.View" />
 
         <variable
-            name="headerViewModel"
-            type="com.uwechue.nycdemo.viewmodel.MainViewModel" />
+            name="scoresViewModel"
+            type="com.uwechue.nycdemo.viewmodel.ScoresViewModel" />
     </data>
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -32,27 +32,80 @@
                     android:id="@+id/progress_bar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:visibility="@{headerViewModel.progressBar}" />
+                    app:visibility="@{scoresViewModel.progressBar}" />
 
                 <TextView
                     android:id="@+id/label_status"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="@{headerViewModel.messageLabel}"
-                    app:visibility="@{headerViewModel.rowLabel}" />
+                    android:text="@{scoresViewModel.messageLabel}"
+                    app:visibility="@{scoresViewModel.statusLabel}" />
+
+                <!-- ============== individual school's SAT scores =============== -->
+                <TextView
+                    android:id="@+id/label_school_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_weight="0.8"
+                    android:text="@{scoresViewModel.schoolName}"
+                    android:textColor="@android:color/holo_blue_light"
+                    android:textSize="24sp"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/label_testers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_weight="0.8"
+                    android:text="@{`#test takers: ` + scoresViewModel.testers}"
+                    android:textColor="@color/blue_grey_200"
+                    android:textSize="18sp"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/label_math_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_weight="0.8"
+                    android:text="@{`Math SAT: ` + scoresViewModel.mathematics}"
+                    android:textColor="@color/blue_grey_200"
+                    android:textSize="18sp"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/label_reading_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_weight="0.8"
+                    android:text="@{`Reading SAT: ` + scoresViewModel.reading}"
+                    android:textColor="@color/blue_grey_200"
+                    android:textSize="18sp"
+                    tools:ignore="RtlCompat" />
+                <TextView
+                    android:id="@+id/label_writing_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/dimen_16dp"
+                    android:layout_marginStart="@dimen/dimen_16dp"
+                    android:layout_marginTop="@dimen/dimen_4dp"
+                    android:layout_marginBottom="@dimen/dimen_8dp"
+                    android:layout_weight="0.8"
+                    android:text="@{`Writing SAT: ` + scoresViewModel.writing}"
+                    android:textColor="@color/blue_grey_200"
+                    android:textSize="18sp"
+                    tools:ignore="RtlCompat" />
 
             </LinearLayout>
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/fab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                android:clickable="true"
-                android:onClick="@{headerViewModel::onClickFabToLoad}"
-                android:src="@android:drawable/ic_dialog_info" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

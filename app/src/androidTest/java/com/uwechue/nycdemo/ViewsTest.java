@@ -28,11 +28,6 @@ public class ViewsTest {
             new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void testBasicAppLaunched() {
-        onView(withText(R.string.load_data)).check(matches(isDisplayed()));
-    }
-
-    @Test
     public void testBasicNetworkError() {
         if (!Utils.isNetworkAvailable(mActivityRule.getActivity().getApplicationContext())) {
             onView(withText(R.string.callback_error)).check(matches(isDisplayed()));

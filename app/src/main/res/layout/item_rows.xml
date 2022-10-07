@@ -6,7 +6,7 @@
         <import type="android.view.View" />
         <variable
             name="mainViewModel"
-            type="com.uwechue.nycdemo.viewmodel.ItemRowViewModel" />
+            type="com.uwechue.nycdemo.viewmodel.SchoolItemRowViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
